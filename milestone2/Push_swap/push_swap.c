@@ -6,7 +6,7 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:06:24 by acastald          #+#    #+#             */
-/*   Updated: 2026/03/24 17:10:05 by acastald         ###   ########.fr       */
+/*   Updated: 2026/03/25 18:35:28 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,9 @@ void	sort_stack(t_stack_node **a, t_stack_node **b)
 	int	len_a;
 
 	len_a = stack_len(*a);
-	printf("entr?");
-	while (len_a > 3)
-	{
-		pb(a, b);
-		len_a--;
-	}
+	while (len_a-- > 3)
+
+		pb(b, a);
 	sort_three(a);
 	while (*b)
 	{
@@ -112,9 +109,13 @@ int	main(int argc, char **argv)
 	b = NULL;
 	if (argc < 2 || (argc == 2 && !argv[1][0]))
 		return (1);
-	else if (argc == 2)
+	if (argc == 2)
+	{
 		argv = ft_split(argv[1], ' ');
-	init_stack(&a, argv + 1);
+		init_stack(&a, argv);
+	}
+	else
+		init_stack(&a, argv + 1);
 	if (!stack_sorted(a))
 	{
 		if (stack_len(a) == 2)
@@ -124,7 +125,6 @@ int	main(int argc, char **argv)
 		else
 			sort_stack(&a, &b);
 	}
-	printf("sorted: %d\n", stack_sorted(a));
 	free_stack(&a);
 	return (0);
 }

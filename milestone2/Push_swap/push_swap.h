@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annalisacastaldo <annalisacastaldo@stud    +#+  +:+       +#+        */
+/*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 09:32:42 by acastald          #+#    #+#             */
-/*   Updated: 2026/03/23 19:02:20 by annalisacas      ###   ########.fr       */
+/*   Updated: 2026/03/25 15:07:30 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ t_stack_node	*min_n(t_stack_node *stack);
 void			push_cost(t_stack_node *a, t_stack_node *b);
 t_stack_node	*cheapest(t_stack_node *stack);
 void			move_cheap(t_stack_node **a, t_stack_node **b, t_stack_node *cheap);
+void			sort_three_rev(t_stack_node **b);
 
 #endif

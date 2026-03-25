@@ -6,7 +6,7 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 12:02:54 by acastald          #+#    #+#             */
-/*   Updated: 2026/03/24 15:00:24 by acastald         ###   ########.fr       */
+/*   Updated: 2026/03/25 17:45:32 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,15 @@ t_stack_node	*min_n(t_stack_node *stack)
 
 void	move_cheap(t_stack_node **a, t_stack_node **b, t_stack_node *cheap)
 {
+	while (cheap != *b && cheap->target != *a)
+	{
+		if (above_median(*b, cheap) && above_median(*a, cheap->target))
+			rr(a, b);
+		else if (!above_median(*b, cheap) && !above_median(*a, cheap->target))
+			rrr(a, b);
+		else
+			break ;
+	}
 	while (cheap != *b)
 	{
 		if (above_median(*b, cheap))
@@ -65,6 +74,7 @@ void	move_cheap(t_stack_node **a, t_stack_node **b, t_stack_node *cheap)
 	}
 	pa(a, b);
 }
+
 
 void	sort_three_rev(t_stack_node **b)
 {
