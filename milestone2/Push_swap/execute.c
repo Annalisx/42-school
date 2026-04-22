@@ -6,36 +6,31 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 12:02:54 by acastald          #+#    #+#             */
-/*   Updated: 2026/03/25 17:45:32 by acastald         ###   ########.fr       */
+/*   Updated: 2026/04/02 17:30:03 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack_node	*cheapest(t_stack_node *stack)
+t_listt	*cheapest(t_listt *stack)
 {
-	t_stack_node	*best;
-	long			bigg;
+	t_listt	*best;
 
 	if (!stack)
 		return (0);
-	bigg = LONG_MAX;
-	best = NULL;
+	best = stack;
 	while (stack)
 	{
-		if (stack->push_cost < bigg)
-		{
-			bigg = stack->push_cost;
+		if (best->push_cost > stack->push_cost)
 			best = stack;
-		}
 		stack = stack->next;
 	}
 	return (best);
 }
 
-t_stack_node	*min_n(t_stack_node *stack)
+t_listt	*min_n(t_listt *stack)
 {
-	t_stack_node	*min;
+	t_listt	*min;
 
 	min = stack;
 	while (stack)
@@ -47,7 +42,7 @@ t_stack_node	*min_n(t_stack_node *stack)
 	return (min);
 }
 
-void	move_cheap(t_stack_node **a, t_stack_node **b, t_stack_node *cheap)
+void	move_cheap(t_listt **a, t_listt **b, t_listt *cheap)
 {
 	while (cheap != *b && cheap->target != *a)
 	{
@@ -75,8 +70,7 @@ void	move_cheap(t_stack_node **a, t_stack_node **b, t_stack_node *cheap)
 	pa(a, b);
 }
 
-
-void	sort_three_rev(t_stack_node **b)
+void	sort_three_rev(t_listt **b)
 {
 	int	primo;
 	int	secondo;
@@ -95,4 +89,19 @@ void	sort_three_rev(t_stack_node **b)
 	secondo = (*b)->next->nb;
 	if (primo < secondo)
 		sb(b);
+}
+
+int	stack_len(t_listt *stack)
+{
+	int	len;
+
+	len = 0;
+	if (!stack)
+		return (0);
+	while (stack)
+	{
+		stack = stack->next;
+		len++;
+	}
+	return (len);
 }

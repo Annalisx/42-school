@@ -6,26 +6,32 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:06:24 by acastald          #+#    #+#             */
-/*   Updated: 2026/03/25 18:35:28 by acastald         ###   ########.fr       */
+/*   Updated: 2026/04/10 14:43:51 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	stack_sorted(t_stack_node *stack)
+int	stack_sorted(t_listt *stack)
 {
+	t_listt	*curr;
+	t_listt	*next;
+
 	if (!stack)
 		return (1);
-	while (stack->next != NULL)
+	curr = stack;
+	next = stack->next;
+	while (next != NULL)
 	{
-		if (stack->nb > stack->next->nb)
+		if (curr->nb > next->nb)
 			return (0);
-		stack = stack->next;
+		curr = next;
+		next = next->next;
 	}
 	return (1);
 }
 
-void	sort_three(t_stack_node **a)
+void	sort_three(t_listt **a)
 {
 	int	primo;
 	int	secondo;
@@ -46,13 +52,12 @@ void	sort_three(t_stack_node **a)
 		sa(a);
 }
 
-void	sort_stack(t_stack_node **a, t_stack_node **b)
+void	sort_stack(t_listt **a, t_listt **b)
 {
 	int	len_a;
 
 	len_a = stack_len(*a);
 	while (len_a-- > 3)
-
 		pb(b, a);
 	sort_three(a);
 	while (*b)
@@ -74,18 +79,20 @@ void	sort_stack(t_stack_node **a, t_stack_node **b)
 	}
 }
 
-void	init_stack(t_stack_node **a, char **argv)
+void	init_stack(t_listt **a, char **argv, int argc)
 {
 	long	n;
 	int		i;
 
-	i = 0;
-	while (argv[i])
+	i = -1;
+	while (argv[++i])
 	{
 		if (error(argv[i]))
 		{
 			free_stack(a);
 			write(2, "Error\n", 6);
+			if (argc == 2)
+				free_one_arg(&argv);
 			exit(1);
 		}
 		n = ft_atol(argv[i]);
@@ -96,14 +103,15 @@ void	init_stack(t_stack_node **a, char **argv)
 			exit(1);
 		}
 		nodooo(a, n);
-		i++;
 	}
+	if (argc == 2)
+		free_one_arg(&argv);
 }
 
 int	main(int argc, char **argv)
 {
-	t_stack_node	*a;
-	t_stack_node	*b;
+	t_listt	*a;
+	t_listt	*b;
 
 	a = NULL;
 	b = NULL;
@@ -112,10 +120,10 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		argv = ft_split(argv[1], ' ');
-		init_stack(&a, argv);
+		init_stack(&a, argv, argc);
 	}
 	else
-		init_stack(&a, argv + 1);
+		init_stack(&a, argv + 1, argc);
 	if (!stack_sorted(a))
 	{
 		if (stack_len(a) == 2)

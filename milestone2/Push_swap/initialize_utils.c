@@ -6,7 +6,7 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 09:17:24 by acastald          #+#    #+#             */
-/*   Updated: 2026/03/12 12:16:06 by acastald         ###   ########.fr       */
+/*   Updated: 2026/03/27 13:46:55 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ int	error(char *s)
 	i = 0;
 	if (!((s[i] == '+' || s[i] == '-') || (s[i] >= '0' && s[i] <= '9')))
 		return (1);
-	if ((s[i] == '+' || s[i] == '-') && !(s[i + 1] >= '0' && s[i + 1] <= '9'))
-		return (1);
 	if (s[i] == '+' || s[i] == '-')
 		i++;
+	if (!s[i])
+		return (1);
 	while (s[i])
 	{
 		if (!(s[i] >= '0' && s[i] <= '9'))
@@ -58,7 +58,7 @@ int	error(char *s)
 	return (0);
 }
 
-int	dupp(t_stack_node *a, long n)
+int	dupp(t_listt *a, long n)
 {
 	if (!a)
 		return (0);
@@ -71,39 +71,39 @@ int	dupp(t_stack_node *a, long n)
 	return (0);
 }
 
-void	free_stack(t_stack_node **stack)
+void	free_stack(t_listt **stack)
 {
-	t_stack_node	*tmp;
-	t_stack_node	*corr;
+	t_listt	*tmp;
+	t_listt	*node;
 
 	if (!stack || !*stack)
 		return ;
-	corr = *stack;
-	while (corr)
+	node = *stack;
+	while (node)
 	{
-		tmp = corr->next;
-		free(corr);
-		corr = tmp;
+		tmp = node->next;
+		free(node);
+		node = tmp;
 	}
 	*stack = NULL;
 }
 
-void	nodooo(t_stack_node **stack, long n)
+void	nodooo(t_listt **stack, long n)
 {
-	t_stack_node	*new;
-	t_stack_node	*last;
+	t_listt	*new;
+	t_listt	*last;
 
 	if (!stack)
 		return ;
-	new = malloc(sizeof(t_stack_node));
+	new = malloc(sizeof(t_listt));
 	if (!new)
 		return ;
 	new->nb = n;
-	new->next = NULL;
 	if (!*stack)
 	{
 		*stack = new;
 		new->prev = NULL;
+		new->next = NULL;
 	}
 	else
 	{
@@ -112,5 +112,6 @@ void	nodooo(t_stack_node **stack, long n)
 			last = last->next;
 		last->next = new;
 		new->prev = last;
+		new->next = NULL;
 	}
 }

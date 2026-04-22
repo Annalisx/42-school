@@ -6,43 +6,47 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:55:52 by acastald          #+#    #+#             */
-/*   Updated: 2026/03/12 16:56:27 by acastald         ###   ########.fr       */
+/*   Updated: 2026/03/27 13:46:55 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	reverse_rotate(t_stack_node **stack)
+void	reverse_rotate(t_listt **stack)
 {
-	t_stack_node	*tail;
+	t_listt	*first;
+	t_listt	*last;
+	t_listt	*tmp;
 
-	if (!stack || !*stack)
+	if (!stack || !*stack || !(*stack)->next)
 		return ;
-	tail = *stack;
-	while (tail->next != NULL)
-		tail = tail->next;
-	tail->prev->next = NULL;
-	tail->next = *stack;
-	tail->prev = NULL;
-	(*stack)->prev = tail;
-	*stack = tail;
+	first = *stack;
+	last = *stack;
+	while (last->next != NULL)
+		last = last->next;
+	tmp = last->prev;
+	tmp->next = NULL;
+	first->prev = last;
+	last->next = first;
+	last->prev = NULL;
+	*stack = last;
 }
 
-void	rra(t_stack_node **a)
+void	rra(t_listt **a)
 {
 	reverse_rotate(a);
-	write(1, "rra\n", 4);
+	ft_printf("rra\n");
 }
 
-void	rrb(t_stack_node **b)
+void	rrb(t_listt **b)
 {
 	reverse_rotate(b);
-	write(1, "rrb\n", 4);
+	ft_printf("rrb\n");
 }
 
-void	rrr(t_stack_node **a, t_stack_node **b)
+void	rrr(t_listt **a, t_listt **b)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
-	write(1, "rrr\n", 4);
+	ft_printf("rrr\n");
 }

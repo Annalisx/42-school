@@ -6,44 +6,75 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:56:50 by acastald          #+#    #+#             */
-/*   Updated: 2026/03/25 15:53:24 by acastald         ###   ########.fr       */
+/*   Updated: 2026/04/10 14:44:11 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push(t_stack_node **dest, t_stack_node **src)
+void	pa(t_listt **a, t_listt **b)
 {
-	t_stack_node	*node;
+	t_listt	*first;
+	t_listt	*second;
 
-	if (!src)
+	if (!b || !*b)
 		return ;
-	node = *src;
-	*src = (*src)->next;
-	if (*src)
-		(*src)->prev = NULL;
-	node->prev = NULL;
-	if (!*dest)
+	first = *b;
+	second = first->next;
+	if (second)
+		(second)->prev = NULL;
+	*b = second;
+	first->prev = NULL;
+	if (!*a)
 	{
-		*dest = node;
-		node->next = NULL;
+		*a = first;
+		first->next = NULL;
 	}
 	else
 	{
-		node->next = *dest;
-		(*dest)->prev = node;
-		*dest = node;
+		first->next = *a;
+		(*a)->prev = first;
+		*a = first;
 	}
+	ft_printf("pa\n");
 }
 
-void	pa(t_stack_node **a, t_stack_node **b)
+void	pb(t_listt **b, t_listt **a)
 {
-	push(a, b);
-	write(1, "pa\n", 3);
+	t_listt	*first;
+	t_listt	*second;
+
+	if (!a || !*a)
+		return ;
+	first = *a;
+	second = first->next;
+	if (second)
+		(second)->prev = NULL;
+	*a = second;
+	first->prev = NULL;
+	if (!*b)
+	{
+		*b = first;
+		first->next = NULL;
+	}
+	else
+	{
+		first->next = *b;
+		(*b)->prev = first;
+		*b = first;
+	}
+	ft_printf("pb\n");
 }
 
-void	pb(t_stack_node **b, t_stack_node **a)
+void	free_one_arg(char ***argv)
 {
-	push(b, a);
-	write(1, "pb\n", 3);
+	int		i;
+
+	i = 0;
+	while ((*argv)[i])
+	{
+		free((*argv)[i]);
+		i++;
+	}
+	free(*argv);
 }
