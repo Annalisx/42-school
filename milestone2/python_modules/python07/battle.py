@@ -23,7 +23,6 @@ def fight(flame_factory: FlameFactory, aqua_factory: AquaFactory) -> None:
     print(aqua.attack())
 
 
-
 if __name__ == "__main__":
     testing(FlameFactory())
     print()
