@@ -10,29 +10,65 @@ from ex0 import CreatureFactory, FlameFactory, AquaFactory, factory
 
 
 def battle(opponent: list[tuple[CreatureFactory, BattleStrategy]]):
-    print("Tournament 0 (basic)")
-    print(print_opp(opponent))
     print("*** Tournament ***")
+    print(f"{len(opponent)} opponents involved")
+    opp = []
+    for factory, strategy in opponent:
 
-def print_opp(opponent: list[tuple[CreatureFactory, BattleStrategy]]):
-    res = "[" + ", ".join(
-        f"({fact.create_base().name}+{strat.__class__.__name__.replace('Strategy', '')})"
-            for fact, strat in opponent
-        ) + "]"
-    return res
+        creature = factory.create_base()
+        opp.append((creature, strategy))
+    for i in range(len(opp)):
+        for j in range(i + 1, len(opp)):
+
+            c1, strat1 = opp[i]
+            c2, strat2 = opp[j]
+
+            print("\n* Battle *")
+            print(c1.describe())
+            print(" vs.")
+            print(c2.describe())
+            print(" now fight!")
+
+            try:
+                result = strat1.act(c1)
+                if isinstance(result, tuple):
+                    for line in result:
+                        print(line)
+                else:
+                    print(result)
+                result2 = strat2.act(c2)
+                if isinstance(result2, tuple):
+                    for linea in result2:
+                        print(linea)
+                else:
+                    print(result2)
+            except InvalidCombination as e:
+                print(f"Battle error, aborting tournament: {e}")
+                return
     
 
 
 if __name__ == "__main__":
-    flame_factory = FlameFactory()
-    aqua_factory = AquaFactory()
-    healing_factory = HealingCreatureFactory()
-    transform_factory = TransformCreatureFactory()
-    normal_strat = NormalStrategy()
-    defendive_strat = DefensiveStrategy()
-    aggressive_strat = Aggressivestrategy()
-    tournament0 = [
-        (flame_factory, normal_strat),
-        (healing_factory, defendive_strat)
+    print("Tournament 0 (basic)")
+    print(" [ (Flameling+Normal), (Healing+Defensive) ]")
+
+    opponents1 = [
+        (FlameFactory(), NormalStrategy()),
+        (HealingCreatureFactory(), DefensiveStrategy())
     ]
-    battle(tournament0)
+    battle(opponents1)
+    print("\nTorunament 1 (error)")
+    print(" [ (Flameling+Aggressive), (Healing+Defensive) ]")
+    opponents2 = [
+        (FlameFactory(), Aggressivestrategy()),
+        (HealingCreatureFactory(), DefensiveStrategy())
+    ]
+    battle(opponents2)
+    print("\nTournament 2 (multiple)")
+    print(" [ (Aquabub+Normal), (Healing+Defensive), (Transform+Aggressive) ]")
+    opponents3 = [
+        (AquaFactory(), NormalStrategy()),
+        (HealingCreatureFactory(), DefensiveStrategy()),
+        (TransformCreatureFactory(), Aggressivestrategy())
+    ]
+    battle(opponents3)

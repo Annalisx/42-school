@@ -35,7 +35,7 @@ class Aggressivestrategy(BattleStrategy):
 
     def act(self, type: Creature):
         if not self.is_valid(type):
-            raise InvalidCombination
+            raise InvalidCombination(f"Invalid Creature'{type.name}' for this aggressive strategy")
         assert isinstance(type, TransformCapability)
         return type.transform(), type.attack(), type.revert()
 
@@ -49,6 +49,6 @@ class DefensiveStrategy(BattleStrategy):
 
     def act(self, type: Creature):
         if not self.is_valid(type):
-            raise InvalidCombination
+            raise InvalidCombination(f"Invalid Creature'{type.name}' for this defensive strategy")
         assert isinstance(type, HealCapability)
         return type.attack(), type.heal()
