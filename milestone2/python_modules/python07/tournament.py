@@ -6,15 +6,20 @@ from ex2.strategy import (
     InvalidCombination,
 )
 from ex1 import HealingCreatureFactory, TransformCreatureFactory
-from ex0 import CreatureFactory, FlameFactory, AquaFactory
+from ex0 import CreatureFactory, FlameFactory, AquaFactory, factory
 
 
 def battle(opponent: list[tuple[CreatureFactory, BattleStrategy]]):
     print("Tournament 0 (basic)")
-    print(opponent)
+    print(print_opp(opponent))
     print("*** Tournament ***")
 
 def print_opp(opponent: list[tuple[CreatureFactory, BattleStrategy]]):
+    res = "[" + ", ".join(
+        f"({fact.create_base().name}+{strat.__class__.__name__.replace('Strategy', '')})"
+            for fact, strat in opponent
+        ) + "]"
+    return res
     
 
 
