@@ -36,8 +36,12 @@ class Aggressivestrategy(BattleStrategy):
 
     def act(self, type: Creature) -> tuple[str, str, str]:
         if not self.is_valid(type):
+<<<<<<< HEAD
             raise InvalidCombination(f"Invalid Creature'{type.name}' for"
                                      " this aggressive strategy")
+=======
+            raise InvalidCombination(f"Invalid Creature'{type.name}' for this aggressive strategy")
+>>>>>>> refs/remotes/origin/main
         assert isinstance(type, TransformCapability)
         return type.transform(), type.attack(), type.revert()
 
@@ -51,7 +55,11 @@ class DefensiveStrategy(BattleStrategy):
 
     def act(self, type: Creature) -> tuple[str, str]:
         if not self.is_valid(type):
+<<<<<<< HEAD
             raise InvalidCombination(f"Invalid Creature'{type.name}' for "
                                      "this defensive strategy")
+=======
+            raise InvalidCombination(f"Invalid Creature'{type.name}' for this defensive strategy")
+>>>>>>> refs/remotes/origin/main
         assert isinstance(type, HealCapability)
         return type.attack(), type.heal()

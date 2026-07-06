@@ -6,9 +6,10 @@ from ex2.strategy import (
     InvalidCombination,
 )
 from ex1 import HealingCreatureFactory, TransformCreatureFactory
-from ex0 import CreatureFactory, FlameFactory, AquaFactory
+from ex0 import CreatureFactory, FlameFactory, AquaFactory, factory
 
 
+<<<<<<< HEAD
 def battle(opponent: list[tuple[CreatureFactory, BattleStrategy]]) -> None:
     print("*** Tournament ***")
     print(f"{len(opponent)} opponents involved")
@@ -16,6 +17,15 @@ def battle(opponent: list[tuple[CreatureFactory, BattleStrategy]]) -> None:
     for facto, strategy in opponent:
 
         creature = facto.create_base()
+=======
+def battle(opponent: list[tuple[CreatureFactory, BattleStrategy]]):
+    print("*** Tournament ***")
+    print(f"{len(opponent)} opponents involved")
+    opp = []
+    for factory, strategy in opponent:
+
+        creature = factory.create_base()
+>>>>>>> refs/remotes/origin/main
         opp.append((creature, strategy))
     for i in range(len(opp)):
         for j in range(i + 1, len(opp)):
@@ -45,6 +55,10 @@ def battle(opponent: list[tuple[CreatureFactory, BattleStrategy]]) -> None:
             except InvalidCombination as e:
                 print(f"Battle error, aborting tournament: {e}")
                 return
+<<<<<<< HEAD
+=======
+    
+>>>>>>> refs/remotes/origin/main
 
 
 if __name__ == "__main__":
@@ -70,4 +84,8 @@ if __name__ == "__main__":
         (HealingCreatureFactory(), DefensiveStrategy()),
         (TransformCreatureFactory(), Aggressivestrategy())
     ]
+<<<<<<< HEAD
     battle(opponents3)
+=======
+    battle(opponents3)
+>>>>>>> refs/remotes/origin/main
