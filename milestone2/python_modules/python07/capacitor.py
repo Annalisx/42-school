@@ -36,5 +36,6 @@ def test_transform(transform: TransformCreatureFactory) -> None:
 if __name__ == "__main__":
     test_heal(HealingCreatureFactory())
     print()
+    print()
     test_transform(TransformCreatureFactory())
     print()
