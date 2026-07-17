@@ -1,5 +1,6 @@
 from typing import Callable
 
+
 def mage_counter() -> Callable:
     counter = 0
 
@@ -22,6 +23,7 @@ def spell_accumulator(initial_power: int) -> Callable:
 
 def enchantment_factory(enchantment_type: str) -> Callable:
     entype = enchantment_type
+
     def enchantment_item(item_name: str) -> str:
         return f"{entype} {item_name}"
     return enchantment_item
@@ -29,9 +31,11 @@ def enchantment_factory(enchantment_type: str) -> Callable:
 
 def memory_vault() -> dict[str, Callable]:
     dictionnary = {}
+
     def store(key: str, value: int):
         dictionnary[key] = value
         print(f"store {key} = {value}")
+
     def recall(key: str):
         if key in dictionnary:
             print(f"Recall {key} : {dictionnary[key]}")
@@ -43,6 +47,7 @@ def memory_vault() -> dict[str, Callable]:
         "store": store,
         "recall": recall
     }
+
 
 def main():
     # Memory Depths Test Data
@@ -63,10 +68,11 @@ def main():
         print(f"\nBase {init_power}")
         accumulator = spell_accumulator(init_power)
         for power_add in power_additions:
-            print(f"Base {init_power}, add {power_add}: {accumulator(power_add)}")
+            print(f"Base {init_power}, add {power_add}:"
+                  f" {accumulator(power_add)}")
 
     print("\nTesting enchantment factory...")
-    for enchant in enchantment_types: 
+    for enchant in enchantment_types:
         print(f"\nenchantment {enchant}")
         enchantment = enchantment_factory(enchant)
         for item in items_to_enchant:
@@ -77,6 +83,7 @@ def main():
     dictionary["store"]('secret', 42)
     dictionary["recall"]('secret')
     dictionary["recall"]('unknown')
+
 
 if __name__ == "__main__":
     main()

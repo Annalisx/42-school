@@ -2,6 +2,7 @@ import functools
 import operator
 from typing import Callable, Any
 
+
 def spell_reducer(spells: list[int], operation: str) -> int:
     if operation == 'add':
         return functools.reduce(
@@ -12,7 +13,7 @@ def spell_reducer(spells: list[int], operation: str) -> int:
             lambda accumulator, item: operator.mul(accumulator, item), spells
         )
     elif operation == 'max':
-         return functools.reduce(
+        return functools.reduce(
             lambda accumulator, item: item if item > accumulator
             else accumulator, spells
         )
@@ -22,6 +23,7 @@ def spell_reducer(spells: list[int], operation: str) -> int:
             else accumulator, spells
         )
     raise ValueError(f'Invalid operation : ({operation})')
+
 
 def partial_enchanter(base_enchantment: Callable) -> dict[str, Callable]:
     return {
@@ -35,7 +37,8 @@ def partial_enchanter(base_enchantment: Callable) -> dict[str, Callable]:
             base_enchantment, power=70, element='lightning'),
     }
 
-@functools.lru_cache 
+
+@functools.lru_cache
 def memoizied_fibonacci(n: int) -> int:
     if n == 0:
         return 0
@@ -43,10 +46,10 @@ def memoizied_fibonacci(n: int) -> int:
         return 1
     return memoizied_fibonacci(n - 1) + memoizied_fibonacci(n - 2)
 
+
 def spell_dispatcher() -> Callable[[Any], str]:
-    
     # 1. Definiamo la funzione base con il decoratore.
-    # Questo è il comportamento di default o di fallback (per tipi sconosciuti).
+    # Questo è il comportamento di default o di fallback (per tipi sconosciuti)
     @functools.singledispatch
     def cast_spell(spell: Any) -> str:
         return "Unknown spell type"
@@ -65,13 +68,13 @@ def spell_dispatcher() -> Callable[[Any], str]:
 
     return cast_spell
 
+
 def main() -> None:
     try:
         # Ancient Library Test Data
         spell_powers = [36, 13, 45, 12, 19, 47]
         operations = ['add', 'multiply', 'max', 'min']
         fibonacci_tests = [11, 10, 13]
-        
         print('\nTesting Spell Reducer...')
         print(f"{operations[0]}:", spell_reducer(spell_powers, operations[0]))
         print(f"{operations[1]}:", spell_reducer(spell_powers, operations[1]))
@@ -79,6 +82,7 @@ def main() -> None:
         print(f"{operations[3]}:", spell_reducer(spell_powers, operations[3]))
 
         print('\nTesting Base Enchantment...')
+
         def base_enchantment(power, element, target) -> str:
             return f"Attack {target} with {element} (power of {power})"
         enchants = partial_enchanter(base_enchantment)
@@ -94,9 +98,10 @@ def main() -> None:
         print(dispatcher(42))
         print(dispatcher("fireball"))
         print(dispatcher(["haste", "heal", "shield"]))
-        print(dispatcher({"item" : "sword", "spell": "dark_magic"}))
+        print(dispatcher({"item": "sword", "spell": "dark_magic"}))
     except ValueError as e:
         print(f"Error: {e}")
+
 
 if __name__ == "__main__":
     main()

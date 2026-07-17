@@ -1,17 +1,20 @@
 import functools
 import time
 from collections.abc import Callable
+from typing import Any
+
 
 def spell_timer(func: Callable) -> Callable:
     @functools.wraps(func)
-    def wrapper(*arg: any, **kwargs: any) -> Callable:
+    def wrapper(*arg: Any, **kwargs: Any) -> Callable:
         print(f"Casting {func.__name__}...")
         start = time.time()
         value = func(*arg, **kwargs)
         end = time.time()
         print(f"Spell completed in {float(end - start):.3f} seconds")
-        return value 
+        return value
     return wrapper
+
 
 def power_validator(min_power: int) -> Callable:
     def validate(func: Callable) -> Callable:
@@ -19,7 +22,7 @@ def power_validator(min_power: int) -> Callable:
             return "Insufficient power for this spell"
 
         @functools.wraps(func)
-        def wrapper(*arg: any, **kwargs: any) -> any:
+        def wrapper(*arg: Any, **kwargs: Any) -> Any:
             if arg[0] >= min_power:
                 return func(*arg, **kwargs)
             else:
@@ -27,10 +30,11 @@ def power_validator(min_power: int) -> Callable:
         return wrapper
     return validate
 
+
 def retry_spell(max_attempts: int) -> Callable:
     def retry(func: Callable) -> Callable:
         @functools.wraps(func)
-        def wrapper(*arg: any, **kwargs: any) -> any:
+        def wrapper(*arg: Any, **kwargs: Any) -> Any:
             i = 0
             while i < max_attempts:
                 try:
@@ -43,13 +47,15 @@ def retry_spell(max_attempts: int) -> Callable:
         return wrapper
     return retry
 
+
 class MageGuild:
     @staticmethod
     def validate_mage_name(name: str) -> bool:
         if len(name) < 3:
             return False
         for letter in name:
-            if (((letter < 'a' or letter > 'z') and (letter < 'A' or letter > 'Z')) and letter != ' '):
+            if (((letter < 'a' or letter > 'z') and
+                 (letter < 'A' or letter > 'Z')) and letter != ' '):
                 return False
         return True
 
@@ -59,15 +65,18 @@ class MageGuild:
             return f"Successfully cast {spell_name} with {power} power"
         return validate_power(power)
 
+
 @spell_timer
 def fireball():
     return "Result: Fireball cast!"
 
+
 @retry_spell(max_attempts=3)
-def retry_spell(num : int):
+def try_spell(num: int):
     if num == 2:
         raise ValueError()
     return "Waaaaaaagh spelled !"
+
 
 def main() -> None:
     # Master's Tower Test Data
@@ -79,12 +88,12 @@ def main() -> None:
     print(fireball())
 
     print("\nTesting retrying spell...")
-    print(f"{retry_spell(2)}")
-    print(retry_spell(1))
+    print(f"{try_spell(2)}")
+    print(try_spell(1))
 
     print("\nTesting MageGuild...")
     mage = MageGuild()
-    for names, power in zip (spell_names, test_powers):
+    for names, power in zip(spell_names, test_powers):
         print(mage.cast_spell(names, power))
     print("\nValid name:")
     for valid in mage_names:

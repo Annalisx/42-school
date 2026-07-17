@@ -1,16 +1,21 @@
 from typing import Callable
 
+
 def fireball(target: str, power: int) -> str:
     return f"Fireball hits {target}"
+
 
 def heal(target: str, power: int) -> str:
     return f"Heals {target}"
 
+
 def shot(target: str, power: int) -> str:
     return f"Shot {target}"
 
+
 def raw_power_spell(target: str, power: int) -> str:
     return str(power)
+
 
 def condition(target: str, power: int) -> bool:
     if target and power >= 10:
@@ -44,7 +49,6 @@ def spell_sequence(spells: list[Callable]) -> Callable:
     return cast_sequence
 
 
-
 if __name__ == "__main__":
     # === Exercise 1 Test Data ===
     test_values = [15, 12, 5]
@@ -61,18 +65,17 @@ if __name__ == "__main__":
     for target, power in zip(test_targets, test_values):
         original = raw_power_spell(target, power)
         amplified = amplifier(target, power)
-        print(f"Target: {target} -> Original power: {original}, Amplified: {amplified}")
+        print(f"Target: {target} -> Original power: {original}, Amplified:"
+              f" {amplified}")
 
     print("\nTesting conditional caster...")
     conditioner = conditional_caster(condition, fireball)
     for target, power in zip(test_targets, test_values):
         result = conditioner(target, power)
         print(f"Target: {target} (Power {power}) -> {result}")
-    
+
     print("\nTesting spell sequence...")
     sequence = spell_sequence([fireball, heal, shot])
     for target, power in zip(test_targets, test_values):
         result = sequence(target, power)
         print(result)
-
-
