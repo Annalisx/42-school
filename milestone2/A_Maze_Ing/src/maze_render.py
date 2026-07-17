@@ -1,0 +1,103 @@
+import os
+from src.maze_generator import MazeGenerator
+
+
+class MazeRenderer:
+    def __init__(self, maze_gen: MazeGenerator) -> None:
+        self.maze = maze_gen
+        self.show_path = False
+        # self.maze.entry = tuple(self.maze.entry)
+        # self.maze.exit = tuple(self.maze.exit)
+
+        self.WALL_COLORS = [
+            "\033[37m",  # 0: White
+            "\033[36m",  # 1: Cian
+            "\033[32m",  # 2: Green
+            "\033[35m",  # 3: Magent
+            "\033[33m",  # 4: yellow
+            "\033[31m",  # 5: Red
+        ]
+        self.current_color_idx = 0
+
+        self.RESET = "\033[0m"
+        self.ENTRY_COLOR = "\033[42m"  # Sfondo Magenta per l'ingresso
+        self.EXIT_COLOR = "\033[41m"   # Sfondo Rosso per l'uscita
+        self.PATH_COLOR = "\033[47m"   # Sfondo Blu per il cammino
+        self.FORTY_TWO_COLOR = "\033[46m"  # Sfondo Verde per le celle del 42
+
+        self.path_coords = self.maze.path_coords
+        if hasattr(self.maze, 'forty_two_coords'):
+            self.forty_two_coords = self.maze.forty_two_coords
+        else:
+            self.forty_two_coords = []
+
+    def clear_screen(self) -> None:
+        os.system('cls' if os.name == 'nt' else 'clear')
+
+    def draw(self) -> None:
+        matrix = self.maze.matrix
+        wall_color = self.WALL_COLORS[self.current_color_idx]
+        for y, row in enumerate(matrix):
+            top = ""
+            col = ""
+            for x, cell in enumerate(row):
+                if cell & 1:
+                    top += f"{wall_color}+───{self.RESET}"
+                else:
+                    top += f"{wall_color}+{self.RESET}   "
+                if cell & 8:
+                    col += f"{wall_color}│{self.RESET}"
+                else:
+                    col += " "
+                if (x, y) == self.maze.entry:
+                    col += f"{self.ENTRY_COLOR}   {self.RESET}"
+                elif (x, y) == self.maze.exit:
+                    col += f"{self.EXIT_COLOR}   {self.RESET}"
+                elif self.show_path and (x, y) in self.path_coords:
+                    col += f"{self.PATH_COLOR}   {self.RESET}"
+                elif (x, y) in self.forty_two_coords:
+                    col += f"{self.FORTY_TWO_COLOR}   {self.RESET}"
+                else:
+                    col += "   "
+            top += f"{wall_color}+{self.RESET}"
+            if row[-1] & 2:  # Est (Bit 1) dell'ultima cella
+                col += f"{wall_color}│{self.RESET}"
+            else:
+                col += " "
+            print(top)
+            print(col)
+        bot = ""
+        for cell in matrix[-1]:
+            if cell & 4:
+                bot += f"{wall_color}+───{self.RESET}"
+            else:
+                bot += f"{wall_color}+{self.RESET}   "
+        bot += f"{wall_color}+{self.RESET}"
+        print(bot)
+
+    def interactive_menu(self) -> None:
+        while True:
+            self.clear_screen()
+            self.draw()
+            if self.maze.width <= 9 or self.maze.height <= 7:
+                print("Error: The maze size does not allow the '42' pattern.")
+            print("\n=== A-Maze-ing ===")
+            print("1. Re-generate a new maze")
+            print("2. Show/Hide path from entry to exit")
+            print("3. Change maze wall colors")
+            print("4. Quit")
+            choice = input("Choice? (1-4): ")
+            if choice == '1':
+                self.maze.matrix = [[15 for _ in range(self.maze.width)]
+                                    for _ in range(self.maze.height)]
+                self.maze.mazing()
+                new_path = self.maze.solve()
+                self.maze.path_output(new_path)
+                self.path_coords = self.maze.path_coords
+            elif choice == '2':
+                self.show_path = not self.show_path
+            elif choice == '3':
+                self.current_color_idx = (self.current_color_idx
+                                          + 1) % len(self.WALL_COLORS)
+            elif choice == '4':
+                break
