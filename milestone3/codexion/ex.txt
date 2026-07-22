@@ -1,0 +1,96 @@
+One or more coders sit in a circular inclusive co-working hub.
+In the center, there is a shared Quantum Compiler
+
+The coders alternatively compile, debug, or refactor.
+if compiling, not debugging not refactoring;
+if debugging, not compiling not refactoring;
+if refactoring, not compiling not debugging
+
+There are USB dongles on the table.
+There are as many dongles as coders
+
+Compiling quantum code requires two dongles plugged in simultaneously,
+one in each hand: a coder takes their left and right dongles to compile.
+
+When a coder finishes compiling, 
+they put both dongles back on the table and start debugging.
+Once debugging is done, they start refactoring.
+The simulation stops when a coder burns out due to lack of compiling.
+
+Every coder needs to compile regularly and should never burn out.
+Coders do not communicate with each other.
+Coders do not know if another coder is about to burn out.
+Needless to say, coders should avoid burnout!
+
+
+
+Your program must take the following arguments (all mandatory):
+number_of_coders
+time_to_burnout
+time_to_compile
+time_to_debug
+time_to_refactor
+number_of_compiles_required
+dongle_cooldown
+scheduler
+
+◦ number_of_coders: The number of coders and also the number of dongles.
+
+◦ time_to_burnout (in milliseconds): If a coder did not start compiling within
+	time_to_burnout milliseconds since the beginning of their last compile or 
+	the beginning of the simulation, they burn out.
+
+◦ time_to_compile (in milliseconds): The time it takes for a coder to compile.
+	During that time, they must hold two dongles.
+
+◦ time_to_debug (in milliseconds): The time a coder will spend debugging.
+
+◦ time_to_refactor (in milliseconds): The time a coder will spend refactoring.
+	After completing the refactoring phase, the coder will immediately attempt
+	to acquire dongles and start compiling again.
+
+◦ number_of_compiles_required: If all coders have compiled at least this many
+	times, the simulation stops. Otherwise, it stops when a coder burns out.
+
+◦ dongle_cooldown (in milliseconds): After being released, a dongle is 
+	unavailable until its cooldown has passed.
+
+◦ scheduler: The arbitration policy used by dongles to decide who gets them 
+	when multiple coders request them.
+	The value must be exactly one of: fifo or edf.
+	fifo means First In, First Out: the dongle is granted to the coder whose
+	request arrived first.
+	edf means Earliest Deadline First with deadline = last_compile_start +
+	time_to_burnout.
+
+Each coder has a number ranging from 1 to number_of_coders
+Coder number 1 sits next to coder number number_of_coders.
+Any other coder number N sits between coder number N - 1 and coder number N
++ 1.
+
+Reminder: All arguments are mandatory. Reject invalid inputs such
+as negative numbers, non-integers, or a scheduler other than fifo or
+edf.
+
+
+About the logs of your program:
+• Any state change of a coder must be formatted as follows:
+◦ timestamp_in_ms X has taken a dongle
+◦ timestamp_in_ms X is compiling
+◦ timestamp_in_ms X is debugging
+◦ timestamp_in_ms X is refactoring
+◦ timestamp_in_ms X burned out
+Replace timestamp_in_ms with the current timestamp in milliseconds
+and X with the coder number
+
+A message announcing that a coder burned out should be displayed no more than
+10 ms after the actual burnout, allow a minimal tolerance when testing,
+as hardware and OS scheduling may slightly affect measured timings
+
+
+
+Timing consideration: To reduce hardware impact on performance
+measurements, consider using CPU usage time instead of real-time
+clock when feasible. However, for this project, real-time
+measurements using gettimeofday() are acceptable and recommended
+for simplicity.
