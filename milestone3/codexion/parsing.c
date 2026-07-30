@@ -6,12 +6,22 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 14:05:27 by acastald          #+#    #+#             */
-/*   Updated: 2026/07/30 19:51:30 by acastald         ###   ########.fr       */
+/*   Updated: 2026/07/30 20:12:26 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
+void	init_coders(t_coders *node, t_coders *prev)
+{
+	node->left = NULL;
+	node->right = NULL;
+	node->next = NULL;
+	if (!prev)
+		node->prev = NULL;
+	else
+		node->prev = prev;
+}
 t_coders	*numbers_of_coders(char *str)
 {
 	int			num_coders;
@@ -35,10 +45,7 @@ t_coders	*numbers_of_coders(char *str)
 	if (!head)
 		return NULL;
 	head->coder_id = 1;
-	head->left = NULL;
-	head->right = NULL;
-	head->next = NULL;
-	head->prev = NULL;
+	init_coders(head, NULL);
 	prev = head;
 	i = 2;
 	while (i <= num_coders)
@@ -47,10 +54,7 @@ t_coders	*numbers_of_coders(char *str)
 		if (curr)
 			return NULL;
 		curr->coder_id = i;
-		head->left = NULL;
-		head->right = NULL;
-		curr->prev = prev;
-		curr->next = NULL;
+		init_coders(curr, prev);
 		prev->next = curr;
 		prev = curr;
 		i++;
@@ -60,7 +64,7 @@ t_coders	*numbers_of_coders(char *str)
 	return (head);
 }
 
-int pars_scheduler(t_info *type, char *str)
+int	pars_scheduler(t_info *type, char *str)
 {
 	if (((strcmp(str, "fifo")) != 0) || ((strcmp(str, "edf")) != 0))
 	{
