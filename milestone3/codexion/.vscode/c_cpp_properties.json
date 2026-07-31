@@ -3,7 +3,8 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "/home/acastald/Desktop/git_scuola/milestone3"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",

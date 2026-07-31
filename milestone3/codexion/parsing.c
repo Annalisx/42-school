@@ -6,7 +6,7 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 14:05:27 by acastald          #+#    #+#             */
-/*   Updated: 2026/07/30 20:12:26 by acastald         ###   ########.fr       */
+/*   Updated: 2026/07/31 18:16:34 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init_coders(t_coders *node, t_coders *prev)
 	else
 		node->prev = prev;
 }
+
 t_coders	*numbers_of_coders(char *str)
 {
 	int			num_coders;
@@ -51,7 +52,7 @@ t_coders	*numbers_of_coders(char *str)
 	while (i <= num_coders)
 	{
 		curr = malloc(sizeof(t_coders));
-		if (curr)
+		if (!curr)
 			return NULL;
 		curr->coder_id = i;
 		init_coders(curr, prev);
@@ -80,3 +81,27 @@ int	pars_scheduler(t_info *type, char *str)
 	}
 	return(0);
 }
+
+// void print_all_coders(t_coders *head)
+// {
+//     t_coders *curr;
+
+//     if (!head)
+//         return;
+//     curr = head;
+//     do
+//     {
+//         printf("Coder ID: %d\n", curr->coder_id);
+//         curr = curr->next;
+//     } while (curr != head); // Si ferma quando torna alla testa della lista circolare
+// }
+
+// int main(void)
+// {
+//     t_coders *list;
+
+//     list = numbers_of_coders("6");
+//     if (list)
+//         print_all_coders(list);
+//     return (0);
+// }

@@ -6,14 +6,14 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 09:37:23 by acastald          #+#    #+#             */
-/*   Updated: 2026/07/30 20:00:22 by acastald         ###   ########.fr       */
+/*   Updated: 2026/07/31 18:02:57 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CODEXION_H
 # define CODEXION_H
 
-# define RED "\x1b[2;31m"
+# define RED "\033[2;31m"
 # define RESET "\x1b[0m"
 
 # include <time.h>
