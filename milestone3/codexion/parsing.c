@@ -6,7 +6,7 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 14:05:27 by acastald          #+#    #+#             */
-/*   Updated: 2026/07/31 18:16:34 by acastald         ###   ########.fr       */
+/*   Updated: 2026/08/05 15:14:28 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_coders	*numbers_of_coders(char *str)
 
 	if (!str || str[0] == '\0')
 	{
-		printf(RED "Error: empty string\n" RESET);
+		printf(RED "Error: empty string, enter the number of coders\n" RESET);
 		return NULL;
 	}
 	num_coders = atoi(str);
@@ -67,41 +67,45 @@ t_coders	*numbers_of_coders(char *str)
 
 int	pars_scheduler(t_info *type, char *str)
 {
-	if (((strcmp(str, "fifo")) != 0) || ((strcmp(str, "edf")) != 0))
+	if (((strcmp(str, "fifo")) != 0) && ((strcmp(str, "edf")) != 0))
 	{
-		if ((strcmp(str, "fifo")) == 0)
-			type->algo = 0;
-		else if ((strcmp(str, "edf")) == 0)
-			type->algo = 1;
-		else
-		{
-			printf("The value must be exactly one of: fifo or edf.\n");
-			return (1);
-		}
+		if (!str || str[0] == '\0')
+			printf(RED "Error: empty string\n" RESET);
+		printf(RED "The value must be exactly one of: fifo or edf.\n" RESET);
+		return (1);
 	}
-	return(0);
+	if ((strcmp(str, "fifo")) == 0)
+	{
+		type->algo = 0;
+		return(0);
+	}
+	else if ((strcmp(str, "edf")) == 0)
+	{
+		type->algo = 1;
+		return(0);
+	}
+	return (1);
 }
-
 // void print_all_coders(t_coders *head)
 // {
-//     t_coders *curr;
+// 	t_coders *curr;
 
-//     if (!head)
-//         return;
-//     curr = head;
-//     do
-//     {
-//         printf("Coder ID: %d\n", curr->coder_id);
-//         curr = curr->next;
-//     } while (curr != head); // Si ferma quando torna alla testa della lista circolare
+// 	if (!head)
+// 		return;
+// 	curr = head;
+// 	do
+// 	{
+// 		printf("id: %d\n", curr->coder_id);
+// 		curr = curr->next;
+// 	} while (curr != head);
 // }
 
 // int main(void)
 // {
-//     t_coders *list;
+// 	t_coders *list;
 
-//     list = numbers_of_coders("6");
-//     if (list)
-//         print_all_coders(list);
-//     return (0);
+// 	list = numbers_of_coders("");
+// 	if (list)
+// 		print_all_coders(list);
+// 	return (0);
 // }
