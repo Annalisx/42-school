@@ -6,7 +6,7 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 09:37:23 by acastald          #+#    #+#             */
-/*   Updated: 2026/09/21 15:04:12 by acastald         ###   ########.fr       */
+/*   Updated: 2026/09/21 20:01:38 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_info
 	int		number_of_compiles_required;
 	long	dongle_cooldown;
 	int		algo;
-} t_info;
+}	t_info;
 
 typedef struct s_dongles
 {
@@ -42,7 +42,7 @@ typedef struct s_dongles
 
 typedef struct s_coders
 {
-	int				coder_id;
+	int					coder_id;
 	struct s_dongles	*left;
 	struct s_dongles	*right;
 	struct s_coders		*next;
@@ -50,8 +50,9 @@ typedef struct s_coders
 }	t_coders;
 
 int			pars_scheduler(t_info *type, char *str);
-t_coders	*numbers_of_coders(char *str);
+t_coders	*numbers_of_coders(long num_coders);
 void		print_error(int error);
+int			init_s_info(t_info *info, char **av);
 int			check(char *str);
 long		ft_atol(char *nptr);
 

@@ -6,7 +6,7 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 14:05:27 by acastald          #+#    #+#             */
-/*   Updated: 2026/09/21 15:18:39 by acastald         ###   ########.fr       */
+/*   Updated: 2026/09/21 20:10:46 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,24 @@ void	init_coders(t_coders *node, t_coders *prev)
 	node->right = NULL;
 	node->next = NULL;
 	if (!prev)
+	{
+		node->coder_id = 1;
 		node->prev = NULL;
+	}
 	else
 		node->prev = prev;
 }
 
-t_coders	*numbers_of_coders(char *str)
+t_coders	*numbers_of_coders(long num_coders)
 {
-	int			num_coders;
 	int			i;
 	t_coders	*head;
 	t_coders	*curr;
 	t_coders	*prev;
 
-	//aggiuasta con main e pars per av[1]
 	head = malloc(sizeof(t_coders));
 	if (!head)
-		return NULL;
-	head->coder_id = 1;
+		return (NULL);
 	init_coders(head, NULL);
 	prev = head;
 	i = 2;
@@ -43,7 +43,7 @@ t_coders	*numbers_of_coders(char *str)
 	{
 		curr = malloc(sizeof(t_coders));
 		if (!curr)
-			return NULL;
+			return (NULL);
 		curr->coder_id = i;
 		init_coders(curr, prev);
 		prev->next = curr;
@@ -67,12 +67,12 @@ int	pars_scheduler(t_info *type, char *str)
 	if ((strcmp(str, "fifo")) == 0)
 	{
 		type->algo = 0;
-		return(0);
+		return (0);
 	}
 	else if ((strcmp(str, "edf")) == 0)
 	{
 		type->algo = 1;
-		return(0);
+		return (0);
 	}
 	return (1);
 }
