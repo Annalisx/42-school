@@ -6,7 +6,7 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 09:37:23 by acastald          #+#    #+#             */
-/*   Updated: 2026/07/31 18:02:57 by acastald         ###   ########.fr       */
+/*   Updated: 2026/09/21 15:04:12 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,8 @@ typedef struct s_coders
 
 int			pars_scheduler(t_info *type, char *str);
 t_coders	*numbers_of_coders(char *str);
+void		print_error(int error);
+int			check(char *str);
+long		ft_atol(char *nptr);
 
 #endif
