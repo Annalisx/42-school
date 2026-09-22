@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annalisacastaldo <annalisacastaldo@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 15:25:14 by acastald          #+#    #+#             */
-/*   Updated: 2026/09/21 19:58:12 by acastald         ###   ########.fr       */
+/*   Updated: 2026/09/22 16:02:45 by annalisacas      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int ac, char **av)
 	}
 	if (init_s_info(&type, av) == 1)
 		return (1);
+	coders = numbers_of_coders(type.number_of_coders);
 	if (pars_scheduler(&type, av[8]))
 		return (1);
 	printf("%d\n", type.algo);

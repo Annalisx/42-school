@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annalisacastaldo <annalisacastaldo@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 14:05:27 by acastald          #+#    #+#             */
-/*   Updated: 2026/09/21 20:10:46 by acastald         ###   ########.fr       */
+/*   Updated: 2026/09/22 16:04:38 by annalisacas      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ t_coders	*numbers_of_coders(long num_coders)
 
 int	pars_scheduler(t_info *type, char *str)
 {
+	//fai il check prima dell'if
 	if (((strcmp(str, "fifo")) != 0) && ((strcmp(str, "edf")) != 0))
 	{
 		if (!str || str[0] == '\0')
