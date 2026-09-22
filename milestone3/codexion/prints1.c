@@ -6,7 +6,7 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 14:27:22 by acastald          #+#    #+#             */
-/*   Updated: 2026/09/21 20:05:45 by acastald         ###   ########.fr       */
+/*   Updated: 2026/09/22 18:34:35 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,16 @@ void	print_error(int error)
 	else if (error == 4)
 	{
 		printf(RED "Invalid number\n");
-		printf("Number of coders must be positive\n");
+		printf("Numbers must be positive\n");
 		printf("The only characters valid are those between 0 and 9.\n" RESET);
 	}
 	else if (error == 5)
 		printf(RED "The value must be exactly one of: fifo or edf.\n" RESET);
 	else if (error == 6)
-		printf("222222222");
+		{
+		printf(RED "Invalid number\n");
+		printf("Number cannot be just 0\n" RESET);
+	}
 	else if (error == 7)
 		printf(RED "1111111111\n" RESET);
 }

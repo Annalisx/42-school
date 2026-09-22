@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annalisacastaldo <annalisacastaldo@stud    +#+  +:+       +#+        */
+/*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 14:25:27 by acastald          #+#    #+#             */
-/*   Updated: 2026/09/22 16:04:15 by annalisacas      ###   ########.fr       */
+/*   Updated: 2026/09/22 18:34:00 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	init_s_info(t_info *info, char **av)
 
 int	check(char *str)
 {
-	//maggiore di 0
 	int	i;
 
 	i = 0;
@@ -46,9 +45,14 @@ int	check(char *str)
 	}
 	while (str[i])
 	{
-		if (str[i] < '0' || str[i] > '9')
+		if (str[0] == '0' && str[1] == '\0')
 		{
 			print_error(4);
+			return (1);
+		}
+		if (str[i] < '0' || str[i] > '9')
+		{
+			print_error(6);
 			return (1);
 		}
 		i++;

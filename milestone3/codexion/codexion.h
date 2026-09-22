@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   codexion.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annalisacastaldo <annalisacastaldo@stud    +#+  +:+       +#+        */
+/*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 09:37:23 by acastald          #+#    #+#             */
-/*   Updated: 2026/09/22 15:45:19 by annalisacas      ###   ########.fr       */
+/*   Updated: 2026/09/22 17:34:37 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_coders
 
 int			pars_scheduler(t_info *type, char *str);
 t_coders	*numbers_of_coders(long num_coders);
+void		init_coders(t_coders *node, t_coders *prev);
 void		print_error(int error);
 int			init_s_info(t_info *info, char **av);
 int			check(char *str);
