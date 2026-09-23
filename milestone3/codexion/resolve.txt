@@ -34,3 +34,4 @@ hai una particolarità: il criterio di confronto cambia a seconda dello
 scheduler scelto (fifo vs edf). Come pensi di gestire questo — due funzioni di
  confronto diverse selezionate in base a type->algo? O un heap "generico" che
  riceve la funzione di confronto come parametro?
+	

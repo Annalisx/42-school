@@ -6,7 +6,7 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 14:25:27 by acastald          #+#    #+#             */
-/*   Updated: 2026/09/22 18:34:00 by acastald         ###   ########.fr       */
+/*   Updated: 2026/09/23 18:38:53 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ long	ft_atol(char *nptr)
 	i = 0;
 	while (nptr[i])
 	{
+		if (n > LONG_MAX / 10 || (n == LONG_MAX / 10 && (nptr[i] - '0') > LONG_MAX % 10))
+			return (-1);
 		n = (n * 10) + (nptr[i] - '0');
 		i++;
 	}
