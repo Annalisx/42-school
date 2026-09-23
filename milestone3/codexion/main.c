@@ -6,7 +6,7 @@
 /*   By: annalisacastaldo <annalisacastaldo@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 15:25:14 by acastald          #+#    #+#             */
-/*   Updated: 2026/09/22 16:02:45 by annalisacas      ###   ########.fr       */
+/*   Updated: 2026/09/23 01:08:45 by annalisacas      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ int	main(int ac, char **av)
 	if (init_s_info(&type, av) == 1)
 		return (1);
 	coders = numbers_of_coders(type.number_of_coders);
+	if (!coders)
+	{
+		print_error(11);
+		return (1);
+	}
 	if (pars_scheduler(&type, av[8]))
 		return (1);
 	printf("%d\n", type.algo);

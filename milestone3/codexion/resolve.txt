@@ -2,12 +2,35 @@ numbers_of_coders(0);
 ./a.out 
 id: 1
 
-numbers_of_coders();
- cc parsing.c 
-parsing.c:100:27: error: too few arguments to function call, single argument 'num_coders' was not specified
-        list = numbers_of_coders();
-               ~~~~~~~~~~~~~~~~~ ^
-parsing.c:29:11: note: 'numbers_of_coders' declared here
-t_coders        *numbers_of_coders(long num_coders)
-                 ^
-1 error generated.
+
+
+Una cosa da tenere a mente per dopo (non bloccante ora, ma segnatela):
+se in futuro pars_scheduler fallisce, fai return (1) con coders ancora
+allocato e mai liberato — quindi anche nel percorso di errore, prima 
+o poi dovrai liberare la lista prima di uscire. Per ora, dato che il
+ main è ancora in costruzione, va bene lasciarlo così — ma è un altro
+"TODO" da tenere a mente insieme all'overflow di ft_atol.
+
+
+
+1. Cosa rappresenta ogni elemento nell'heap?
+Il subject dice che i coder fanno richieste per un dongle specifico,
+ e la coda serve ad arbitrare chi lo ottiene tra chi lo sta aspettando. 
+Quindi ogni nodo dell'heap dovrà rappresentare "una richiesta in attesa"
+— cosa ti serve sapere di quella richiesta per poterla ordinare? Pensa a 
+cosa cambia tra fifo ed edf:
+per fifo ti serve un dato che rappresenti "quando è arrivata la richiesta"
+per edf ti serve "qual è la deadline di questo coder" (last_compile_start + 
+time_to_burnout)
+2. L'heap sarà uno solo, globale, o uno per ogni dongle?
+Il subject dice che l'arbitrato avviene per dongle — quando più coder
+chiedono lo stesso dongle. Quindi: ogni t_dongles avrà il proprio heap di 
+richieste in attesa, giusto? O stavi pensando a un heap unico condiviso da 
+tutto il sistema?
+3. Che operazioni minime ti servono su questo heap?
+Di base per un min-heap classico servono: inserimento (push), estrazione 
+del minimo (pop/extract-min), e un modo per confrontare due elementi. Ma qui 
+hai una particolarità: il criterio di confronto cambia a seconda dello 
+scheduler scelto (fifo vs edf). Come pensi di gestire questo — due funzioni di
+ confronto diverse selezionate in base a type->algo? O un heap "generico" che
+ riceve la funzione di confronto come parametro?
