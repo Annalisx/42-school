@@ -6,7 +6,7 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 15:25:14 by acastald          #+#    #+#             */
-/*   Updated: 2026/09/23 17:21:17 by acastald         ###   ########.fr       */
+/*   Updated: 2026/09/29 21:24:52 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,4 @@ int	main(int ac, char **av)
 	printf("%d\n", type.algo);
 	return (0);
 }
+

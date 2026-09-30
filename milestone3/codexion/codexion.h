@@ -6,7 +6,7 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 09:37:23 by acastald          #+#    #+#             */
-/*   Updated: 2026/09/23 18:37:37 by acastald         ###   ########.fr       */
+/*   Updated: 2026/09/30 19:28:26 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 # define RED "\033[2;31m"
 # define MY_RED "\033[1;31m"
-#define GREEN_DIM   "\033[2;32m"
-#define YELLOW_DIM  "\033[2;33m"
-#define BLUE_DIM    "\033[2;34m"
-#define MAGENTA_DIM "\033[2;35m"
-#define CYAN_DIM    "\033[2;36m"
-#define WHITE_DIM   "\033[2;37m"
+# define GREEN_DIM   "\033[2;32m"
+# define YELLOW_DIM  "\033[2;33m"
+# define BLUE_DIM    "\033[2;34m"
+# define MAGENTA_DIM "\033[2;35m"
+# define CYAN_DIM    "\033[2;36m"
+# define WHITE_DIM   "\033[2;37m"
 # define RESET "\x1b[0m"
 
 # include <time.h>
@@ -47,11 +47,15 @@ typedef struct s_dongles
 {
 	int		dongle_id;
 	bool	active;
+	pthread_mutex_t lock;
 }	t_dongles;
 
 typedef struct s_coders
 {
 	int					coder_id;
+	pthread_t			thread_id;
+	long				last_compile_start;
+	int					count_compiles;
 	struct s_dongles	*left;
 	struct s_dongles	*right;
 	struct s_coders		*next;

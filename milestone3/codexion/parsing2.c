@@ -6,7 +6,7 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 14:25:27 by acastald          #+#    #+#             */
-/*   Updated: 2026/09/23 18:38:53 by acastald         ###   ########.fr       */
+/*   Updated: 2026/09/29 21:11:09 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ int	init_s_info(t_info *info, char **av)
 	}
 	info->number_of_coders = ft_atol(av[1]);
 	info->time_to_burnout = ft_atol(av[2]);
+	if (info->time_to_burnout == -1)
+	{
+		print_error(4);
+		return (1);
+	}
 	info->time_to_compile = ft_atol(av[3]);
 	info->time_to_debug = ft_atol(av[4]);
 	info->time_to_refactor = ft_atol(av[5]);
@@ -62,7 +67,6 @@ int	check(char *str)
 
 long	ft_atol(char *nptr)
 {
-	//overflow
 	long	n;
 	int		i;
 
@@ -70,7 +74,8 @@ long	ft_atol(char *nptr)
 	i = 0;
 	while (nptr[i])
 	{
-		if (n > LONG_MAX / 10 || (n == LONG_MAX / 10 && (nptr[i] - '0') > LONG_MAX % 10))
+		if (n > LONG_MAX / 10 || (n == LONG_MAX / 10 && (nptr[i] - '0')
+				> LONG_MAX % 10))
 			return (-1);
 		n = (n * 10) + (nptr[i] - '0');
 		i++;
