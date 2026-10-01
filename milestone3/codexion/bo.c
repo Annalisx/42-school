@@ -20,25 +20,24 @@
 #define CYAN_BOLD   "\033[1;36m"
 #define WHITE_BOLD  "\033[1;37m"
 
-int main(void)
+int	main(void)
 {
-    printf("--- Test Colori Attenuati (2;) ---\n");
-    printf(RED_DIM     "Testo Rosso (Dim)\n"     RESET);
-    printf(GREEN_DIM   "Testo Verde (Dim)\n"   RESET);
-    printf(YELLOW_DIM  "Testo Giallo (Dim)\n"  RESET);
-    printf(BLUE_DIM    "Testo Blu (Dim)\n"     RESET);
-    printf(MAGENTA_DIM "Testo Magenta (Dim)\n" RESET);
-    printf(CYAN_DIM    "Testo Ciano (Dim)\n"    RESET);
-    printf(WHITE_DIM   "Testo Bianco (Dim)\n"   RESET);
-
-    printf("\n--- Test Colori Brillanti / Bold (1;) ---\n");
-    printf(RED_BOLD     "Testo Rosso (Bold)\n"     RESET);
-    printf(GREEN_BOLD   "Testo Verde (Bold)\n"   RESET);
-    printf(YELLOW_BOLD  "Testo Giallo (Bold)\n"  RESET);
-    printf(BLUE_BOLD    "Testo Blu (Bold)\n"     RESET);
-    printf(MAGENTA_BOLD "Testo Magenta (Bold)\n" RESET);
-    printf(CYAN_BOLD    "Testo Ciano (Bold)\n"    RESET);
-    printf(WHITE_BOLD   "Testo Bianco (Bold)\n"   RESET);
-
-    return (0);
+	printf("--- Test Colori Attenuati (2;) ---\n");
+	printf(RED_DIM "Testo Rosso (Dim)\n" RESET);
+	printf(GREEN_DIM "Testo Verde (Dim)\n" RESET);
+	printf(YELLOW_DIM "Testo Giallo (Dim)\n" RESET);
+	printf(BLUE_DIM "Testo Blu (Dim)\n" RESET);
+	printf(MAGENTA_DIM "Testo Magenta (Dim)\n" RESET);
+	printf(CYAN_DIM "Testo Ciano (Dim)\n" RESET);
+	printf(WHITE_DIM "Testo Bianco (Dim)\n" RESET);
+	printf("\n");
+	printf("\n--- Test Colori Brillanti / Bold (1;) ---\n");
+	printf(RED_BOLD "Testo Rosso (Bold)\n" RESET);
+	printf(GREEN_BOLD "Testo Verde (Bold)\n" RESET);
+	printf(YELLOW_BOLD "Testo Giallo (Bold)\n" RESET);
+	printf(BLUE_BOLD "Testo Blu (Bold)\n" RESET);
+	printf(MAGENTA_BOLD "Testo Magenta (Bold)\n" RESET);
+	printf(CYAN_BOLD "Testo Ciano (Bold)\n" RESET);
+	printf(WHITE_BOLD "Testo Bianco (Bold)\n" RESET);
+	return (0);
 }

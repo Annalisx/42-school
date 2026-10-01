@@ -6,11 +6,11 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 14:05:27 by acastald          #+#    #+#             */
-/*   Updated: 2026/09/30 21:54:26 by acastald         ###   ########.fr       */
+/*   Updated: 2026/10/01 15:02:43 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "codexion.h"
+#include "../codexion.h"
 
 void	init_coders(t_coders *node, t_coders *prev)
 {
@@ -97,7 +97,7 @@ int	pars_scheduler(t_info *type, char *str)
 // {
 // 	t_coders *list;
 
-// 	list = numbers_of_coders("");
+// 	list = numbers_of_coders(0);
 // 	if (list)
 // 		print_all_coders(list);
 // 	return (0);

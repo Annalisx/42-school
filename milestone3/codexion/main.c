@@ -6,7 +6,7 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 15:25:14 by acastald          #+#    #+#             */
-/*   Updated: 2026/09/29 21:24:52 by acastald         ###   ########.fr       */
+/*   Updated: 2026/10/01 15:09:30 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,7 @@ int	main(int ac, char **av)
 	t_info		type;
 	t_coders	*coders;
 
-	if (ac == 2)
-	{
-		print_error(2);
-		return (1);
-	}
-	if (ac != 9)
+	if (ac == 2 || ac != 9)
 	{
 		print_error(1);
 		return (1);
@@ -40,4 +35,3 @@ int	main(int ac, char **av)
 	printf("%d\n", type.algo);
 	return (0);
 }
-

@@ -6,11 +6,11 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 14:25:27 by acastald          #+#    #+#             */
-/*   Updated: 2026/09/29 21:11:09 by acastald         ###   ########.fr       */
+/*   Updated: 2026/10/01 15:00:35 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "codexion.h"
+#include "../codexion.h"
 
 int	init_s_info(t_info *info, char **av)
 {
@@ -52,12 +52,12 @@ int	check(char *str)
 	{
 		if (str[0] == '0' && str[1] == '\0')
 		{
-			print_error(4);
+			print_error(6);
 			return (1);
 		}
 		if (str[i] < '0' || str[i] > '9')
 		{
-			print_error(6);
+			print_error(4);
 			return (1);
 		}
 		i++;

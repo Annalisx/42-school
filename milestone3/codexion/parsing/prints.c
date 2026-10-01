@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prints1.c                                          :+:      :+:    :+:   */
+/*   prints.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annalisacastaldo <annalisacastaldo@stud    +#+  +:+       +#+        */
+/*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 14:27:22 by acastald          #+#    #+#             */
-/*   Updated: 2026/09/23 01:04:12 by annalisacas      ###   ########.fr       */
+/*   Updated: 2026/10/01 15:09:35 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "codexion.h"
+#include "../codexion.h"
 
 void	print_error(int error)
 {
 	if (error == 1)
-		printf(RED "Invalid number of arguments\n" RESET);
-	else if (error == 2)
 	{
 		printf(RED "Invalid number of arguments\nEach argument must be");
 		printf(" space-separated or enclosed in double quotes.\n" RESET);

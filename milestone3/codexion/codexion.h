@@ -6,7 +6,7 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 09:37:23 by acastald          #+#    #+#             */
-/*   Updated: 2026/09/30 19:28:26 by acastald         ###   ########.fr       */
+/*   Updated: 2026/10/01 15:20:03 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,25 @@
 # include <stdbool.h>
 # include <limits.h>
 
-typedef struct s_info
-{
-	int		number_of_coders;
-	long	time_to_burnout;
-	long	time_to_compile;
-	long	time_to_debug;
-	long	time_to_refactor;
-	int		number_of_compiles_required;
-	long	dongle_cooldown;
-	int		algo;
-}	t_info;
-
 typedef struct s_dongles
 {
-	int		dongle_id;
-	bool	active;
-	pthread_mutex_t lock;
+	int				dongle_id;
+	bool			active;
+	pthread_mutex_t	lock;
 }	t_dongles;
+
+typedef struct s_info
+{
+	int			number_of_coders;
+	long		time_to_burnout;
+	long		time_to_compile;
+	long		time_to_debug;
+	long		time_to_refactor;
+	int			number_of_compiles_required;
+	long		dongle_cooldown;
+	int			algo;
+	t_dongles	*dongles;
+}	t_info;
 
 typedef struct s_coders
 {
