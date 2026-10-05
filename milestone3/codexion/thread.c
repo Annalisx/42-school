@@ -14,18 +14,22 @@ int	main()
 	pthread_join(thread1, NULL);
 }
 
-bool	create_threads(t_coders coder, int num_coders)
+bool	create_threads(t_coders *list, t_info info, int num_coders)
 {
 	int	i;
+	t_coders *curr;
 
+	curr = list;
 	i = 0;
 	if (num_coders == 1)
 	{
-		if (pthread_create(&coder->coder_id, NULL, computation, coder[i] != 0))
+		if (pthread_create(&curr->thread_id, NULL, computation, NULL))
+			return (false);
 	}
 	else if (num_coders >= 1)
 	{
-		if (pthread_create(&coder->coder_id, NULL, computation, coder[i] != 0))
+		if (pthread_create(&list->thread_id, NULL, computation, NULL))
+			return (false);
 	}
 	
 }
