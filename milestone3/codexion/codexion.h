@@ -6,7 +6,7 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 09:37:23 by acastald          #+#    #+#             */
-/*   Updated: 2026/10/01 15:20:03 by acastald         ###   ########.fr       */
+/*   Updated: 2026/10/12 18:07:47 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,8 @@ void		print_error(int error);
 int			init_s_info(t_info *info, char **av);
 int			check(char *str);
 long		ft_atol(char *nptr);
+bool		create_threads(t_coders *list, t_info info, int num_coders);
+void		*computation(void);
+
 
 #endif

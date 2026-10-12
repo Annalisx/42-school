@@ -1,13 +1,7 @@
 
-
-
-Una cosa da tenere a mente per dopo (non bloccante ora, ma segnatela):
-se in futuro pars_scheduler fallisce, fai return (1) con coders ancora
-allocato e mai liberato — quindi anche nel percorso di errore, prima 
-o poi dovrai liberare la lista prima di uscire. Per ora, dato che il
- main è ancora in costruzione, va bene lasciarlo così — ma è un altro
-"TODO" da tenere a mente insieme all'overflow di ft_atol.
-
+se pars_scheduler fallisce, fa return (1) con coders ancora
+allocato e mai freeato
+anche nel percorso di errore, devo liberare la lista prima di uscire
 
 
 1. Cosa rappresenta ogni elemento nell'heap?
