@@ -6,7 +6,7 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 09:37:23 by acastald          #+#    #+#             */
-/*   Updated: 2026/10/12 18:07:47 by acastald         ###   ########.fr       */
+/*   Updated: 2026/10/22 21:51:50 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,17 @@ typedef struct s_dongles
 
 typedef struct s_info
 {
-	int			number_of_coders;
-	long		time_to_burnout;
-	long		time_to_compile;
-	long		time_to_debug;
-	long		time_to_refactor;
-	int			number_of_compiles_required;
-	long		dongle_cooldown;
-	int			algo;
-	t_dongles	*dongles;
+	int				number_of_coders;
+	long			time_to_burnout;
+	long			time_to_compile;
+	long			time_to_debug;
+	long			time_to_refactor;
+	int				number_of_compiles_required;
+	long			dongle_cooldown;
+	int				algo;
+	bool			running;
+	pthread_mutex_t	mutex_running;
+	t_dongles		*dongles;
 }	t_info;
 
 typedef struct s_coders
@@ -57,10 +59,11 @@ typedef struct s_coders
 	pthread_t			thread_id;
 	long				last_compile_start;
 	int					count_compiles;
-	struct s_dongles	*left;
-	struct s_dongles	*right;
+	t_dongles	*left;
+	t_dongles	*right;
 	struct s_coders		*next;
 	struct s_coders		*prev;
+	t_info		*info;
 }	t_coders;
 
 int			pars_scheduler(t_info *type, char *str);

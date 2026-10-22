@@ -6,7 +6,7 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 17:31:24 by acastald          #+#    #+#             */
-/*   Updated: 2026/10/20 22:15:00 by acastald         ###   ########.fr       */
+/*   Updated: 2026/10/22 20:55:43 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*start_routine(void *arg)
 	t_coders	*num_coder;
 
 	num_coder = (t_coders *)arg;
-	while (num_coder != NULL && num_coder->next != NULL)
+	while (!end_program || !burnout)
 	{
 		// compiling
 		// debugging
