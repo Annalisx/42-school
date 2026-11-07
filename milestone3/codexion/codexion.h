@@ -6,7 +6,7 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 09:37:23 by acastald          #+#    #+#             */
-/*   Updated: 2026/10/22 21:51:50 by acastald         ###   ########.fr       */
+/*   Updated: 2026/11/07 15:16:34 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # define CYAN_DIM    "\033[2;36m"
 # define WHITE_DIM   "\033[2;37m"
 # define RESET "\x1b[0m"
+//# define _POSIX_C_SOURCE 200809L
+
 
 # include <time.h>
 # include <stdlib.h>
@@ -30,6 +32,8 @@
 # include <string.h>
 # include <stdbool.h>
 # include <limits.h>
+# include <bits/time.h>
+
 
 typedef struct s_dongles
 {
@@ -51,30 +55,36 @@ typedef struct s_info
 	bool			running;
 	pthread_mutex_t	mutex_running;
 	t_dongles		*dongles;
+	long			start_time;
+	pthread_mutex_t	mutex_log;
 }	t_info;
 
 typedef struct s_coders
 {
-	int					coder_id;
-	pthread_t			thread_id;
-	long				last_compile_start;
-	int					count_compiles;
-	t_dongles	*left;
-	t_dongles	*right;
-	struct s_coders		*next;
-	struct s_coders		*prev;
-	t_info		*info;
+	int				coder_id;
+	pthread_t		thread_id;
+	long			last_compile_start;
+	int				count_compiles;
+	t_dongles		*left;
+	t_dongles		*right;
+	struct s_coders	*next;
+	struct s_coders	*prev;
+	t_info			*info;
 }	t_coders;
 
 int			pars_scheduler(t_info *type, char *str);
-t_coders	*numbers_of_coders(long num_coders);
-void		init_coders(t_coders *node, t_coders *prev);
+t_coders	*numbers_of_coders(long num_coders, t_info *type);
+void		init_coders(t_coders *node, t_coders *prev, t_info *type);
 void		print_error(int error);
 int			init_s_info(t_info *info, char **av);
 int			check(char *str);
 long		ft_atol(char *nptr);
 bool		create_threads(t_coders *list, t_info info, int num_coders);
-void		*computation(void);
+long		get_time_ms(void);
+long		timestamp(t_info *info);
+int			init_mutex(t_info *info);
+void		print_msg(t_coders *coder, char *str);
+//void		*computation(void);
 
 
 #endif

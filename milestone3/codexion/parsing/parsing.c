@@ -6,14 +6,15 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 14:05:27 by acastald          #+#    #+#             */
-/*   Updated: 2026/10/01 15:02:43 by acastald         ###   ########.fr       */
+/*   Updated: 2026/11/07 12:25:53 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../codexion.h"
 
-void	init_coders(t_coders *node, t_coders *prev)
+void	init_coders(t_coders *node, t_coders *prev, t_info *type)
 {
+	node->info = type;
 	node->left = NULL;
 	node->right = NULL;
 	node->next = NULL;
@@ -26,7 +27,7 @@ void	init_coders(t_coders *node, t_coders *prev)
 		node->prev = prev;
 }
 
-t_coders	*numbers_of_coders(long num_coders)
+t_coders	*numbers_of_coders(long num_coders, t_info *type)
 {
 	int			i;
 	t_coders	*head;
@@ -36,7 +37,7 @@ t_coders	*numbers_of_coders(long num_coders)
 	head = malloc(sizeof(t_coders));
 	if (!head)
 		return (NULL);
-	init_coders(head, NULL);
+	init_coders(head, NULL, type);
 	prev = head;
 	i = 2;
 	while (i <= num_coders)
@@ -45,7 +46,7 @@ t_coders	*numbers_of_coders(long num_coders)
 		if (!curr)
 			return (NULL);
 		curr->coder_id = i;
-		init_coders(curr, prev);
+		init_coders(curr, prev, type);
 		prev->next = curr;
 		prev = curr;
 		i++;
