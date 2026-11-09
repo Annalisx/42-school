@@ -6,7 +6,7 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 17:31:24 by acastald          #+#    #+#             */
-/*   Updated: 2026/11/07 15:18:28 by acastald         ###   ########.fr       */
+/*   Updated: 2026/11/09 23:00:49 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@ void	*start_routine(void *arg)
 	t_coders	*num_coder;
 
 	num_coder = (t_coders *)arg;
-	while (!end_program || !burnout)
+	while (num_coder->info->running == true)
 	{
 		print_msg(num_coder, "is compiling");
 		print_msg(num_coder, "is debugging");
 		print_msg(num_coder, "is refactoring");
-		return (0);
 	}
 	return (NULL);
 }
@@ -35,27 +34,42 @@ void	*start_routine(void *arg)
 // 	pthread_join(thread1, NULL);
 // }
 
-bool	create_threads(t_coders *list, t_info info, int num_coders)
+bool	create_threads(t_coders *list, int num_coders)
 {
 	int			i;
 	t_coders	*curr;
 
+	if (!list)
+		return (false);
 	curr = list;
 	i = 0;
-	if (num_coders == 1)
+	while (i < num_coders)
 	{
-		if (pthread_create(&curr->thread_id, NULL, &start_routine, num_coders))
+		if (pthread_create(&curr->thread_id, NULL, &start_routine, curr))
 			return (false);
-		return (true);
+		curr = curr->next;
+		i++;
 	}
-	else if (num_coders >= 1)
+	return (true);
+}
+
+bool	join_threads(t_coders *list, int num_coders)
+{
+	int			i;
+	t_coders	*curr;
+
+	if (!list)
+		return (false);
+	curr = list;
+	i = 0;
+	while (i < num_coders)
 	{
-		if (pthread_create(&list->thread_id, NULL, &start_routine, NULL))
+		if (pthread_join(curr->thread_id, NULL))
 			return (false);
-		num_coders = info.number_of_coders;
-		return (true);
+		curr = curr->next;
+		i++;
 	}
-	return (false);
+	return (true);
 }
 
 int	init_mutex(t_info *info)

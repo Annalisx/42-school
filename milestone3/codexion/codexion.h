@@ -6,7 +6,7 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 09:37:23 by acastald          #+#    #+#             */
-/*   Updated: 2026/11/07 15:16:34 by acastald         ###   ########.fr       */
+/*   Updated: 2026/11/09 23:07:43 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # define RESET "\x1b[0m"
 //# define _POSIX_C_SOURCE 200809L
 
-
 # include <time.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -33,7 +32,6 @@
 # include <stdbool.h>
 # include <limits.h>
 # include <bits/time.h>
-
 
 typedef struct s_dongles
 {
@@ -75,16 +73,16 @@ typedef struct s_coders
 int			pars_scheduler(t_info *type, char *str);
 t_coders	*numbers_of_coders(long num_coders, t_info *type);
 void		init_coders(t_coders *node, t_coders *prev, t_info *type);
-void		print_error(int error);
+int			print_error(int error);
 int			init_s_info(t_info *info, char **av);
 int			check(char *str);
 long		ft_atol(char *nptr);
-bool		create_threads(t_coders *list, t_info info, int num_coders);
+bool		create_threads(t_coders *list, int num_coders);
+bool		join_threads(t_coders *list, int num_coders);
 long		get_time_ms(void);
 long		timestamp(t_info *info);
 int			init_mutex(t_info *info);
 void		print_msg(t_coders *coder, char *str);
 //void		*computation(void);
-
 
 #endif

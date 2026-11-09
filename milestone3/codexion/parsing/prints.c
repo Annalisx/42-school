@@ -6,13 +6,13 @@
 /*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 14:27:22 by acastald          #+#    #+#             */
-/*   Updated: 2026/11/07 15:31:01 by acastald         ###   ########.fr       */
+/*   Updated: 2026/11/09 23:03:50 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../codexion.h"
 
-void	print_error(int error)
+int	print_error(int error)
 {
 	if (error == 1)
 	{
@@ -31,7 +31,11 @@ void	print_error(int error)
 	else if (error == 6)
 		printf(RED "Invalid number\nNumber cannot be just 0\n" RESET);
 	else if (error == 11)
+	{
 		printf(MY_RED "allocation failed in\n" RESET);
+		return (1);
+	}
+	return (0);
 }
 
 void	print_msg(t_coders *coder, char *str)

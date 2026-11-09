@@ -25,4 +25,30 @@ hai una particolarità: il criterio di confronto cambia a seconda dello
 scheduler scelto (fifo vs edf). Come pensi di gestire questo — due funzioni di
  confronto diverse selezionate in base a type->algo? O un heap "generico" che
  riceve la funzione di confronto come parametro?
-	
+
+
+
+
+Thread	create_threads con ciclo, 
+start_routine corretta, 
+pthread_join
+
+Dongle	Allocarli, inizializzare i mutex,
+assegnare left/right (con il caso di un solo coder)
+
+Ciclo del coder	Compile, debug e refactor con attese (usleep) e log
+
+Presa dei dongle	Lock dei due dongle senza deadlock, più il cooldown
+
+Monitor	Thread che controlla il burnout e 
+la fine per numero di compilazioni
+
+Heap per fifo/edf	Coda a priorità integrata 
+con le condition variable
+
+Pulizia	free, pthread_mutex_destroy, join,
+uscite in caso di errore
+
+README
+
+Test- casi limite, burnout entro 10 ms, controllo leak

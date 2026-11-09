@@ -4,7 +4,7 @@ CC = cc
 CFLAGS = -g -Wall -Wextra -Werror -pthread -I.
 RM = rm -f
 
-SRCS = main.c parsing/parsing.c parsing/parsing2.c parsing/prints.c thread.c
+SRCS = main.c parsing/parsing.c parsing/parsing2.c parsing/prints.c thread.c time.c
 
 OBJS = $(SRCS:.c=.o)
 
