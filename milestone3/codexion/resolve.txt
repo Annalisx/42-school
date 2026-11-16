@@ -29,14 +29,17 @@ scheduler scelto (fifo vs edf). Come pensi di gestire questo — due funzioni di
 
 
 
-Thread	create_threads con ciclo, 
-start_routine corretta, 
-pthread_join
 
-Dongle	Allocarli, inizializzare i mutex,
+
+Dongle
 assegnare left/right (con il caso di un solo coder)
 
-Ciclo del coder	Compile, debug e refactor con attese (usleep) e log
+Ciclo del coder -   log
+- Compiling quantum code requires two dongles plugged in simultaneously,
+one in each hand: a coder takes their left and right dongles to compile.
+- When a coder finishes compiling, they put both dongles back on the table and start
+debugging. After being released, a dongle is unavailable until its cooldown has passed.
+- Once debugging is done, they start refactoring. 
 
 Presa dei dongle	Lock dei due dongle senza deadlock, più il cooldown
 
@@ -51,4 +54,9 @@ uscite in caso di errore
 
 README
 
-Test- casi limite, burnout entro 10 ms, controllo leak
+Test
+- casi limite, 
+- Burnout logs must be displayed within 10 ms
+of the actual burnout time. Allow a minimal tolerance when testing,
+as hardware and OS scheduling may slightly affect measured timings.
+- controllo leak

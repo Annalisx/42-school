@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annalisacastaldo <annalisacastaldo@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/07 13:38:04 by acastald          #+#    #+#             */
-/*   Updated: 2026/11/09 23:00:10 by acastald         ###   ########.fr       */
+/*   Updated: 2026/11/09 23:46:39 by annalisacas      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
-#include <bits/time.h>
 
 long	get_time_ms(void)
 {

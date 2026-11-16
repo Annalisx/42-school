@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annalisacastaldo <annalisacastaldo@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 14:25:27 by acastald          #+#    #+#             */
-/*   Updated: 2026/10/01 15:00:35 by acastald         ###   ########.fr       */
+/*   Updated: 2026/11/11 00:47:58 by annalisacas      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	init_s_info(t_info *info, char **av)
 	info->time_to_refactor = ft_atol(av[5]);
 	info->number_of_compiles_required = ft_atol(av[6]);
 	info->dongle_cooldown = ft_atol(av[7]);
+	if (pars_scheduler(info, av[8]))
+		return (1);
 	return (0);
 }
 

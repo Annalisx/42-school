@@ -3,14 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annalisacastaldo <annalisacastaldo@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 14:05:27 by acastald          #+#    #+#             */
-/*   Updated: 2026/11/09 23:08:18 by acastald         ###   ########.fr       */
+/*   Updated: 2026/11/16 13:46:17 by annalisacas      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../codexion.h"
+
+int	init_dongle(t_info *info)
+{
+	int			i;
+	
+	i = 0;
+	info->dongles = malloc(sizeof(t_dongles) * info->number_of_coders);
+	if (!info->dongles)
+		return (print_merror(11));
+	while (i < info->number_of_coders)
+	{
+		info->dongles[i].dongle_id = i;
+		info->dongles[i].active = true;
+		if (pthread_mutex_init(&info->dongles[i].lock, NULL) != 0)
+			return (print_merror(12));
+		i++;
+	}
+	return (0);
+}
 
 void	init_coders(t_coders *node, t_coders *prev, t_info *type)
 {
@@ -78,6 +97,7 @@ int	pars_scheduler(t_info *type, char *str)
 		type->algo = 1;
 		return (0);
 	}
+	free_all(type->number_of_coders);
 	return (1);
 }
 // void print_all_coders(t_coders *head)

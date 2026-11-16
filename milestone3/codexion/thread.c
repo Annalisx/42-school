@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annalisacastaldo <annalisacastaldo@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 17:31:24 by acastald          #+#    #+#             */
-/*   Updated: 2026/11/09 23:00:49 by acastald         ###   ########.fr       */
+/*   Updated: 2026/11/11 00:50:43 by annalisacas      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,12 @@ void	*start_routine(void *arg)
 	num_coder = (t_coders *)arg;
 	while (num_coder->info->running == true)
 	{
-		print_msg(num_coder, "is compiling");
-		print_msg(num_coder, "is debugging");
-		print_msg(num_coder, "is refactoring");
+		compiling(num_coder);
+		debugging(num_coder);
+		refactoring(num_coder);
 	}
 	return (NULL);
 }
-
-// int	main(void)
-// {
-// 	pthread_t	thread1;
-
-// 	pthread_create(&thread1, NULL, computation, NULL);
-// 	pthread_join(thread1, NULL);
-// }
 
 bool	create_threads(t_coders *list, int num_coders)
 {
@@ -76,8 +68,10 @@ int	init_mutex(t_info *info)
 {
 	info->running = true;
 	if (pthread_mutex_init(&info->mutex_log, NULL) != 0)
-		return (1);
+		return (print_merror(12));
 	if (pthread_mutex_init(&info->mutex_running, NULL) != 0)
+		return (print_merror(12));
+	if (init_dongle(info) != 0)
 		return (1);
 	return (0);
 }

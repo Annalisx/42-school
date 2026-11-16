@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   codexion.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annalisacastaldo <annalisacastaldo@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 09:37:23 by acastald          #+#    #+#             */
-/*   Updated: 2026/11/09 23:07:43 by acastald         ###   ########.fr       */
+/*   Updated: 2026/11/11 00:26:01 by annalisacas      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,17 @@
 # define CYAN_DIM    "\033[2;36m"
 # define WHITE_DIM   "\033[2;37m"
 # define RESET "\x1b[0m"
-//# define _POSIX_C_SOURCE 200809L
+# define _POSIX_C_SOURCE 200809L
 
 # include <time.h>
+# include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <pthread.h>
 # include <string.h>
 # include <stdbool.h>
 # include <limits.h>
-# include <bits/time.h>
+# include <time.h>
 
 typedef struct s_dongles
 {
@@ -82,7 +83,13 @@ bool		join_threads(t_coders *list, int num_coders);
 long		get_time_ms(void);
 long		timestamp(t_info *info);
 int			init_mutex(t_info *info);
+int			init_dongle(t_info *info);
 void		print_msg(t_coders *coder, char *str);
+void		compiling(t_coders *num_coder);
+void		debugging(t_coders *num_coder);
+void		refactoring(t_coders *num_coder);
+int			print_merror(int error);
+
 //void		*computation(void);
 
 #endif
