@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   codexion.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annalisacastaldo <annalisacastaldo@stud    +#+  +:+       +#+        */
+/*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 09:37:23 by acastald          #+#    #+#             */
-/*   Updated: 2026/11/11 00:26:01 by annalisacas      ###   ########.fr       */
+/*   Updated: 2026/11/16 21:25:54 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define CYAN_DIM    "\033[2;36m"
 # define WHITE_DIM   "\033[2;37m"
 # define RESET "\x1b[0m"
+# define _DEFAULT_SOURCE
 # define _POSIX_C_SOURCE 200809L
 
 # include <time.h>

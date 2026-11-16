@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annalisacastaldo <annalisacastaldo@stud    +#+  +:+       +#+        */
+/*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/16 13:41:33 by annalisacas       #+#    #+#             */
-/*   Updated: 2026/11/16 13:41:59 by annalisacas      ###   ########.fr       */
+/*   Updated: 2026/11/16 18:27:41 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void    free_all()
+void	free_all()
 {
 
 }
+

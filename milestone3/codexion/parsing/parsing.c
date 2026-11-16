@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annalisacastaldo <annalisacastaldo@stud    +#+  +:+       +#+        */
+/*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 14:05:27 by acastald          #+#    #+#             */
-/*   Updated: 2026/11/16 13:46:17 by annalisacas      ###   ########.fr       */
+/*   Updated: 2026/11/16 20:49:18 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	init_dongle(t_info *info)
 {
-	int			i;
-	
+	int	i;
+
 	i = 0;
 	info->dongles = malloc(sizeof(t_dongles) * info->number_of_coders);
 	if (!info->dongles)
@@ -97,7 +97,7 @@ int	pars_scheduler(t_info *type, char *str)
 		type->algo = 1;
 		return (0);
 	}
-	free_all(type->number_of_coders);
+	//free_all(type->number_of_coders);
 	return (1);
 }
 // void print_all_coders(t_coders *head)

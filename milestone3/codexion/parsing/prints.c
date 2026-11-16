@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prints.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annalisacastaldo <annalisacastaldo@stud    +#+  +:+       +#+        */
+/*   By: acastald <acastald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 14:27:22 by acastald          #+#    #+#             */
-/*   Updated: 2026/11/16 13:54:12 by annalisacas      ###   ########.fr       */
+/*   Updated: 2026/11/16 19:03:39 by acastald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ void	print_msg(t_coders *coder, char *str)
 
 void	print_dongles(t_coders *pos, char *str)
 {
-	t_coders	*dongle;
+	t_dongles	*dongle;
+
+	dongle = NULL;
 	if (dongle == pos->left)
 	{
 		printf("%ld %d %s\n", timestamp(pos->info), pos->coder_id, str);
@@ -67,7 +69,4 @@ void	print_dongles(t_coders *pos, char *str)
 	{
 		printf("%ld %d %s\n", timestamp(pos->info), pos->coder_id, str);
 	}
-	else
-		return (1);
-	return (0);
 }
